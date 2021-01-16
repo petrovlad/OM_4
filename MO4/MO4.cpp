@@ -16,7 +16,7 @@ double q0[] = { 100, 100, 100, 100, 100 };
 double k[] = { 120, 160, 130, 140, 110 };
 double v[] = { 48000, 22400, 6400, 8600, 2460 };
 double s[] = { 200, 280, 260, 200, 250 };
-int size = 5;
+const int size = 5;
 
 int getRandom(int min, int max)
 {
@@ -33,7 +33,7 @@ double norma(vect vector) {
 	return sqrt(sum);
 }
 
-vect norm(vect vector) {
+vect normVector(vect vector) {
 	vect result;
 	result.resize(size);
 	double n = norma(vector);
@@ -49,11 +49,11 @@ void fillVector(vect& vector, double* arr, int size) {
 		vector[i] = arr[i];
 	}
 }
-
+// generate random step
 vect generateVector() {
 	vect result;
 	for (int i = 0; i < size; i++) {
-		double r = (double)getRandom(-100, 100);
+		double r = static_cast<double>(getRandom(-100, 100));
 		r = r / 100;
 		result.push_back(r);
 	}
@@ -61,7 +61,7 @@ vect generateVector() {
 }
 
 vect newVect(vect x, vect e) {
-	vect eNorm = norm(e);
+	vect eNorm = normVector(e);
 	vect result;
 	result.resize(size);
 	for (int i = 0; i < size; i++) {
@@ -83,7 +83,7 @@ void printVector(vect x) {
 		printf("\t%f", x[i]);
 	}
 	printf("\n");
-	printf("L = %f\n", func(x));
+	printf("L = %f\n\n", func(x));
 }
 
 int main()
